@@ -1,0 +1,59 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table SecurityPricing {
+  id Int [pk, increment]
+  productCategory ProductCategory [not null]
+  productSubCategory ProductSubCategory [not null]
+  region Region
+  productName String [not null]
+  maxBandwidthInMbps Int
+  productCode String [not null]
+  productDescription String [not null]
+  qtyUnits QtyUnits [not null]
+  listPrice Decimal [not null]
+  revenueType RevenueType [not null]
+  threatPrevention Decimal [not null]
+  casb Decimal [not null]
+  dlp Decimal [not null]
+  saasSecurityApiOneApp Decimal [not null]
+  saasSecurityApiTwoApps Decimal [not null]
+  saasSecurityApiAllApps Decimal [not null]
+  rbi Decimal [not null]
+}
+
+Enum ProductCategory {
+  SITE_BANDWIDTH
+  REMOTE_ACCESS
+  MANAGED_SERVICES
+  SOCKET_ACCESSORIES
+}
+
+Enum ProductSubCategory {
+  SSE_SITE_BANDWIDTH
+  SDP_USERS
+  ILMM
+  SOCKET
+  DUAL_RACKMOUNT_KIT
+  FIBER_CARD
+  GBIC
+}
+
+Enum QtyUnits {
+  NUMBER_OF_SITES
+  NUMBER_OF_USERS
+  NUMBER_OF_APPLICATIONS
+  NUMBER_OF_KITS
+  NUMBER_OF_CARDS
+}
+
+Enum RevenueType {
+  RECURRING
+  NON_RECURRING
+}
+
+Enum Region {
+  GROUP_1
+  GENERAL
+}

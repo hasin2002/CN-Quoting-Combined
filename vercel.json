@@ -1,0 +1,11 @@
+{
+    "crons": [
+        {
+            "path": "/api/cron",
+            "schedule": "25 22 * * *"
+        }
+    ],
+    "rewrites": [
+        { "source": "/api/openapi.json", "destination": "/api/doc" }
+    ]
+}

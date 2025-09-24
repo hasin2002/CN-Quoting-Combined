@@ -1,0 +1,70 @@
+datasource db {
+    provider  = "postgresql"
+    url       = env("DATABASE_URL") // uses connection pooling
+    directUrl = env("DIRECT_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator dbml {
+    provider = "prisma-dbml-generator"
+}
+
+
+enum ProductCategory {
+    SITE_BANDWIDTH      @map("Site Bandwidth")
+    REMOTE_ACCESS       @map("Remote Access")
+    MANAGED_SERVICES    @map("Managed Services")
+    SOCKET_ACCESSORIES  @map("Socket & Accessories")
+}
+
+enum ProductSubCategory {
+    SSE_SITE_BANDWIDTH @map("SSE Site Bandwidth")
+    SDP_USERS          @map("SDP Users")
+    ILMM               @map("ILMM")
+    SOCKET             @map("Socket")
+    DUAL_RACKMOUNT_KIT @map("Dual Rackmount Kit")
+    FIBER_CARD         @map("Fiber Card")
+    GBIC               @map("GBIC")
+}
+
+enum QtyUnits {
+    NUMBER_OF_SITES         @map("Number of Sites")
+    NUMBER_OF_USERS         @map("Number of Users")
+    NUMBER_OF_APPLICATIONS  @map("Number of Applications")
+    NUMBER_OF_KITS          @map("Number of Kits")
+    NUMBER_OF_CARDS         @map("Number of Cards")
+}
+
+enum RevenueType {
+    RECURRING @map("Recurring")
+    NON_RECURRING @map("Non-Recurring")
+}
+
+enum Region {
+    GROUP_1    @map("Group 1")
+    GENERAL    @map("GENERAL")
+}
+
+model SecurityPricing {
+    id                     Int      @id @default(autoincrement())
+    productCategory        ProductCategory
+    productSubCategory     ProductSubCategory
+    region                 Region?
+    productName            String
+    maxBandwidthInMbps     Int?
+    productCode            String
+    productDescription     String
+    qtyUnits               QtyUnits
+    listPrice              Decimal  @db.Decimal(10,2)
+    revenueType            RevenueType
+    threatPrevention       Decimal  @db.Decimal(10,2)
+    casb                   Decimal  @db.Decimal(10,2)
+    dlp                    Decimal  @db.Decimal(10,2)
+    saasSecurityApiOneApp  Decimal  @db.Decimal(10,2)
+    saasSecurityApiTwoApps Decimal  @db.Decimal(10,2)
+    saasSecurityApiAllApps Decimal  @db.Decimal(10,2)
+    rbi                    Decimal  @db.Decimal(10,2)
+}
